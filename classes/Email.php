@@ -22,11 +22,11 @@ class Email {
     //Crear el objeto mail
     $mail = new PHPMailer();
     $mail->isSMTP();
-    $mail->Host = 'sandbox.smtp.mailtrap.io';
+    $mail->Host = $_ENV['EMAIL_HOST'];
     $mail->SMTPAuth = true;
-    $mail->Port = 2525;
-    $mail->Username = 'c03781e2126934';
-    $mail->Password = 'aef13c3ebf94e1';
+    $mail->Port = $_ENV['EMAIL_PORT'];
+    $mail->Username = $_ENV['EMAIL_USER'];
+    $mail->Password = $_ENV['EMAIL_PASS'];
 
     $mail->setFrom('cuentas@appsalon.com');
     $mail->addAddress('cuentas@appsalon.com', 'AppSalon.com');
@@ -38,7 +38,7 @@ class Email {
 
     $contenido = "<html>";
     $contenido.= "<p><strong>Hola " . $this->nombre . "</strong> Has creado tu cuenta en AppSalon, solo debes confirmarla presionando el siguiente enlace</p>";
-    $contenido.= "<p>Presiona aqui: <a href='http://localhost:3000/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a> </p>";
+    $contenido.= "<p>Presiona aqui: <a href='" . $_ENV['APP_URL'] . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a> </p>";
     $contenido.= "<p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>";
     $contenido.= "</html>";
 
@@ -52,11 +52,11 @@ class Email {
     //Crear el objeto mail
     $mail = new PHPMailer();
     $mail->isSMTP();
-    $mail->Host = 'sandbox.smtp.mailtrap.io';
+    $mail->Host = $_ENV['EMAIL_HOST'];
     $mail->SMTPAuth = true;
-    $mail->Port = 2525;
-    $mail->Username = 'c03781e2126934';
-    $mail->Password = 'aef13c3ebf94e1';
+    $mail->Port = $_ENV['EMAIL_PORT'];
+    $mail->Username = $_ENV['EMAIL_USER'];
+    $mail->Password = $_ENV['EMAIL_PASS'];
 
     $mail->setFrom('cuentas@appsalon.com');
     $mail->addAddress('cuentas@appsalon.com', 'AppSalon.com');
@@ -68,7 +68,7 @@ class Email {
 
     $contenido = "<html>";
     $contenido.= "<p><strong>Hola " . $this->nombre . "</strong> Has solicitado restablecer tu password sigue el siguiente enlace para hacerlo </p>";
-    $contenido.= "<p>Presiona aqui: <a href='http://localhost:3000/recuperar?token=" . $this->token . "'>Restablecer Password</a> </p>";
+    $contenido.= "<p>Presiona aqui: <a href='" . $_ENV['APP_URL'] . "/recuperar?token=" . $this->token . "'>Restablecer Password</a> </p>";
     $contenido.= "<p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>";
     $contenido.= "</html>";
 
